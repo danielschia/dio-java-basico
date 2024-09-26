@@ -1,20 +1,30 @@
 package mensagens;
 
+import mensagens.apps.FacebookMessenger;
+import mensagens.apps.MSNMessenger;
+import mensagens.apps.ServicoMensagemInstantanea;
+import mensagens.apps.Telegram;
+
 public class ComputadorUsuario {
   public static void main(String[] args) {
-      MSNMessenger msn = new MSNMessenger();
-      System.out.println("MSN");
-      msn.receberMensagem();
-      msn.enviarMensagem();
+     ServicoMensagemInstantanea smi = null;
 
-      FacebookMessenger fb = new FacebookMessenger();
-      System.out.println("Facebook");
-      fb.receberMensagem();
-      fb.enviarMensagem();
+     String appEscolhido = "Telegram";
 
-      Telegram telegram = new Telegram();
-      System.out.println("Telegram");
-      telegram.receberMensagem();
-      telegram.enviarMensagem();
+     if(appEscolhido.equals("MSN")){
+       smi = new MSNMessenger();
+     } else if(appEscolhido.equals("Facebook Messenger")){
+       smi = new FacebookMessenger();
+     } else if(appEscolhido.equals("Telegram")){
+       smi = new Telegram();
+     } else {
+       System.out.println("App não encontrado");
+     }
+
+     smi.enviarMensagem();
+     smi.receberMensagem();
+
+     // TODO: Implementar o historico de mensagens
+     // public abstract void salvarHistoricoMensagem();
   }
 }
